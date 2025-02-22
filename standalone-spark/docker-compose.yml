@@ -1,0 +1,39 @@
+x-spark-common: &spark-common
+  # image: bitnami/spark:3.5.4-debian-12-r4
+  build: .
+  volumes:
+    - ./jobs:/opt/bitnami/spark/jobs
+  environment:
+    - SPARK_RPC_ENCRYPTION_ENABLED=no
+    - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+    - SPARK_SSL_ENABLED=no
+    - SPARK_USER=spark
+    - _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true"
+  networks:
+    spark_network:
+
+services:
+  master:
+    <<: *spark-common
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=0.0.0.0
+      - SPARK_MASTER_PORT=7077
+    ports:
+      - "18080:8080"
+
+  worker:
+    <<: *spark-common
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://master:7077
+      - SPARK_WORKER_MEMORY=1G
+      - SPARK_WORKER_CORES=1
+    depends_on:
+      - master
+
+networks:
+  spark_network:
+    driver: bridge
+  shared_network:
+    external: true
