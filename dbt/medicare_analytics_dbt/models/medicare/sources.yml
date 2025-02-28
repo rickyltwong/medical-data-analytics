@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: medicare
+    database: medicare_db
+    schema: medicare
+    tables:
+      - name: ext_raw_spending
+        external:
+          location: '@medicare_ext_stage'
+          file_format: parquet
+          auto_refresh: true
+        columns:
+          - name: brand_name
+            data_type: varchar
+          - name: generic_name
+            data_type: varchar
+          - name: manufacturer_name
+            data_type: varchar
+          - name: year
+            data_type: varchar
+          - name: total_spending
+            data_type: float
+          - name: total_dosage_units
+            data_type: integer
+          - name: total_claims
+            data_type: integer
+          - name: total_beneficiaries
+            data_type: integer
+          - name: avg_spend_per_dosage_unit
+            data_type: float
+          - name: avg_spend_per_claim
+            data_type: float
+          - name: avg_spend_per_beneficiary
+            data_type: float
+          - name: outlier_flag
+            data_type: boolean 

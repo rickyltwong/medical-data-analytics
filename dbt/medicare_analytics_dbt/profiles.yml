@@ -1,0 +1,13 @@
+medicare_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: BROOPBW-PY94345
+      user: LOKILOK12
+      password: 
+      role: ACCOUNTADMIN
+      database: MEDICARE_DB
+      warehouse: COMPUTE_WH
+      schema: medicare
+      threads: 4

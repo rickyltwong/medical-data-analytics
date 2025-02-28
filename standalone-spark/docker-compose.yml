@@ -3,6 +3,7 @@ x-spark-common: &spark-common
   build: .
   volumes:
     - ./jobs:/opt/bitnami/spark/jobs
+    - ./conf:/opt/bitnami/spark/conf
   environment:
     - SPARK_RPC_ENCRYPTION_ENABLED=no
     - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
@@ -27,10 +28,12 @@ services:
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://master:7077
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=2
     depends_on:
       - master
+    ports:
+      - "18081-18082:8081"
 
 networks:
   spark_network:
