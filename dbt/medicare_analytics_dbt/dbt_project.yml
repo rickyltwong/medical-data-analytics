@@ -33,4 +33,5 @@ models:
   medicare_analytics_dbt:
     # Config indicated by + and applies to all files under models/example/
      medicare:
-      +materialized: view
+       +materialized: view
+       +materialized: table

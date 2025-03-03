@@ -100,6 +100,7 @@ def unpivot_medicare_spending_data():
     
     final_df = reduce(DataFrame.unionAll, dfs)
 
+    # Convert string columns to appropriate types
     final_df = final_df \
         .withColumn("Tot_Spndng", col("Tot_Spndng").cast("float")) \
         .withColumn("Tot_Dsg_Unts", col("Tot_Dsg_Unts").cast("integer")) \
@@ -112,7 +113,7 @@ def unpivot_medicare_spending_data():
         .withColumn("CAGR_Avg_Spnd_Per_Dsg_Unt_18_22", col("CAGR_Avg_Spnd_Per_Dsg_Unt_18_22").cast("float")) \
         .withColumn("Chg_Avg_Spnd_Per_Dsg_Unt_21_22", col("Chg_Avg_Spnd_Per_Dsg_Unt_21_22").cast("float"))
 
-    # Write as Parquet with proper column names (optional: either rename columns here or map them in the snowflake external table definition)
+    # Write as Parquet with proper column names
     final_df.select(
         col("Brnd_Name").alias("brand_name"),
         col("Gnrc_Name").alias("generic_name"),
