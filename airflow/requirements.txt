@@ -2,5 +2,8 @@ apache-airflow-providers-amazon
 apache-airflow-providers-snowflake
 apache-airflow-providers-apache-spark
 apache-airflow-providers-databricks
-astronomer-cosmos
 pyspark
+dbt-core=1.8.0
+dbt-snowflake=1.8.0
+boto3
+astronomer-cosmos
