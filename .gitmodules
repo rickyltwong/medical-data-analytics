@@ -1,3 +1,6 @@
 [submodule "dbt"]
 	path = dbt
 	url = git@github.com:rickyltwong/medicare-dbt.git
+[submodule "airflow"]
+	path = airflow
+	url = git@github.com:rickyltwong/medicare-airflow.git
