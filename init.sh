@@ -29,3 +29,8 @@ docker network connect shared_network airflow-worker-1
 # check http://localhost:18080/
 # check http://localhost:8080/connection/list/
 # test run http://localhost:8080/dags/test_pyspark
+
+docker run -d -p 3000:3000 --name metabase metabase/metabase
+
+# check http://localhost:3000/
+# metabase does not connect to the shared network because it is connected to the snowflake.
