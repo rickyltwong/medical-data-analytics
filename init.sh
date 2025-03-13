@@ -34,3 +34,6 @@ docker run -d -p 3000:3000 --name metabase metabase/metabase
 
 # check http://localhost:3000/
 # metabase does not connect to the shared network because it is connected to the snowflake.
+
+cd ${PROJECT_DIR}/chainlit
+uv run chainlit run chainlit_app.py -w
